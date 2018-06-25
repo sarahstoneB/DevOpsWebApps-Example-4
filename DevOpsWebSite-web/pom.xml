@@ -1,0 +1,46 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.devops.devopswebapps</groupId>
+		<artifactId>DevOpsWebApps-Root</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+
+	<groupId>com.devops.devopswebapps</groupId>
+	<artifactId>DevOpsWebSite</artifactId>
+	<packaging>war</packaging>
+	<version>1.0.0</version>
+	<name>${project.artifactId}-${project.version}</name>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.devops.devopswebapps</groupId>
+			<artifactId>DevOpsWebSite-core</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<finalName>${project.artifactId}-${project.version}</finalName>
+		<plugins>
+			<plugin>
+				 <!-- Add/update this in tomcat-home/conf/tomcat-users.xml file
+					<role rolename="manager-gui"/>
+					<user username="tomcat" password="s3cret" roles="admin,tomcat,manager-gui,manager-script"/>
+					Run the maven goal tomcat7:deploy to deploy your war package to tomcat server. -->
+				
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<url>http://localhost:8888/manager/text</url>
+					<update>true</update>
+					<path>/${project.artifactId}-${project.version}</path>
+					<username>tomcat</username>
+					<password>s3cret</password>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
