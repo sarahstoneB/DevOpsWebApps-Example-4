@@ -7,11 +7,11 @@ node {
 
    // Get the maven tool.
    // ** NOTE: This 'M3' maven tool must be configured
-   // **       in the global configuration.
+   // **       in the global tool configuration in Jenkins.
    def mvnHome = tool 'maven-3.5.3'
 
    // Mark the code build 'stage'....
    stage 'Build'
-   // Run the maven build
+   // Run the maven build - if you are running this script on Linux box, then replace 'bat' with 'sh' i.e., sh "${mvnHome}/bin/mvn clean install"
    bat "${mvnHome}/bin/mvn clean install"
 }
